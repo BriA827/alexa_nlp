@@ -22,9 +22,38 @@ def cfg_to_dict(list):
 def valid_sentence(grammar, sentence):
     order = [i for i in grammar.keys()]
     order.reverse()
-    
+    valid = True
+    tup = []
+
     for i in sentence.split():
-        print(i.lower())
+        for o in order:
+            for w in grammar[o]["word"]:
+                    if i == w:
+                        tup.append((o,i))
+                    elif i.lower() == w:
+                        tup.append((o,i))
+
+        if tup[-1][-1] != i:
+            valid = False
+
+
+    if valid:
+        return valid, tup
+    else:
+        return valid, []
+
+def parse_valid(grammar, valid):
+    construct = []
+    sentence = None
+
+    for i in valid:
+        print(i[0])
+        for w in grammar[o]["tag"]:
+            if i == w:
+                tup.append((i,w))
+            elif i.lower() == w:
+                tup.append((i,w))
+
 
 ###################################################
 
@@ -35,4 +64,6 @@ cfg_dic = cfg_to_dict(cfg)
 
 test = "The man saw a dog in the park with a telescope"
 
-valid_sentence(cfg_dic, test)
+real, parse = valid_sentence(cfg_dic, test)
+
+parse_valid(cfg_dic, parse)
