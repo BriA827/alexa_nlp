@@ -58,8 +58,6 @@ def parse_valid(grammar, valid):
     tags = []
     types = []
     val = ""
-    construct = []
-    sentence = None
 
     for o in order:
         for w in grammar[o]['tag']:
@@ -89,7 +87,7 @@ cfg_dic = cfg_to_dict(cfg)
 test = "The man saw a dog in the park with a telescope"
 
 real, parse = valid_sentence(cfg_dic, test)
-# print(real, parse)
+print(real, parse)
 
 final = parse_valid(cfg_dic, parse)
 print(final)
